@@ -4,8 +4,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { Page1Component } from './page1/page1.component';
 import { Page2Component } from './page2/page2.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ColorsComponent } from './utilities/colors/colors.component';
-import { BoardsComponent } from './utilities/boards/boards.component';
 
 const routes: Routes = [
 
@@ -13,15 +11,8 @@ const routes: Routes = [
   { path: 'page1', component: Page1Component },
   { path: 'page2', component: Page2Component },
   { path: 'dashboard', component: DashboardComponent },
-  {
-    path: 'utilities',
-    children: [
-      { path: 'colors', component: ColorsComponent, data: { seoTitle: 'N/A' } },
-      { path: 'colors/:type', component: ColorsComponent },
-      { path: 'boards', component: BoardsComponent },
-    ]
-  },
   { path: 'components', loadChildren: () => import('./components/components.module').then(m => m.ComponentsModule) },
+  { path: 'utilities', loadChildren: () => import('./utilities/utilities.module').then(m => m.UtilitiesModule) },
   { path: '**', component: NotFoundComponent },
 ];
 
